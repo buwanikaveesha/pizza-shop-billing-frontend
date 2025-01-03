@@ -1,0 +1,92 @@
+.item-management {
+  max-width: 800px;
+  margin: 20px auto;
+  padding: 20px;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.item-management-topic {
+  font-size: 28px;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.item-management-search-bar input {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 20px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.item-management-item-form {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.item-management-item-form input {
+  flex: 1;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.item-management-item-form button {
+  padding: 10px 20px;
+  background-color: #28a745;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.item-management-item-form button:hover {
+  background-color: #218838;
+}
+
+.item-management-item-list {
+  list-style: none;
+  padding: 0;
+}
+
+.item-management-item {
+  display: grid;
+  grid-template-columns: 1fr 1fr auto;
+  align-items: center;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  margin-bottom: 10px;
+  background-color: #f7f7f7;
+}
+
+.item-management-item .item-name {
+  font-weight: bold;
+}
+
+.item-management-item .item-price {
+  font-weight: bold;
+  text-align: center;
+}
+
+.item-management-item-buttons {
+  display: flex;
+  gap: 10px;
+  justify-content: flex-end;
+}
+
+.item-management-item-button {
+  background-color: #dc3545;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  padding: 5px 10px;
+  cursor: pointer;
+}
+
+.item-management-item-button:hover {
+  background-color: #c82333;
+}

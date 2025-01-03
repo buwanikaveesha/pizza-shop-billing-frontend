@@ -1,0 +1,80 @@
+.bill-management {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.bill-management h1 {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 24px;
+}
+
+.bill-form {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.bill-form input {
+    flex: 1;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.bill-form button {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.bill-form button:hover {
+    background-color: #0056b3;
+}
+
+.bill-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+
+.bill-table th,
+.bill-table td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: left;
+}
+
+.bill-table th {
+    background-color: #f4f4f4;
+}
+
+.bill-table td button {
+    padding: 5px 10px;
+    background-color: #dc3545;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.bill-table td button:hover {
+    background-color: #c82333;
+}
+
+.bill-summary {
+    text-align: right;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.bill-summary p {
+    margin: 5px 0;
+}

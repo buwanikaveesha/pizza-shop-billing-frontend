@@ -7,9 +7,8 @@ const BillManagement = () => {
     const [newBillItem, setNewBillItem] = useState({ name: "", price: "", quantity: 1 });
     const [itemList, setItemList] = useState([]);
     const [searchQuery, setSearchQuery] = useState("");
-    const [currentTime, setCurrentTime] = useState(new Date()); // State to store the current date and time
+    const [currentTime, setCurrentTime] = useState(new Date());
 
-    // Fetch all items initially
     useEffect(() => {
         const fetchItems = async () => {
             try {
@@ -18,31 +17,43 @@ const BillManagement = () => {
                 setItemList(data);
             } catch (error) {
                 console.error("Error fetching items:", error);
-                setItemList([]); // Clear the list in case of error
+                setItemList([]);
             }
         };
         fetchItems();
     }, []);
 
-    // Update the current time every second
     useEffect(() => {
         const interval = setInterval(() => {
-            setCurrentTime(new Date()); // Update the current time
+            setCurrentTime(new Date());
         }, 1000);
-
-        return () => clearInterval(interval); // Cleanup the interval on component unmount
+        return () => clearInterval(interval);
     }, []);
 
-    // Filter items based on the search query
     const filteredItems = itemList.filter(item =>
         item.name.toLowerCase().includes(searchQuery.toLowerCase())
     );
 
-    const handleAddToBill = () => {
+    const handleAddToBill = async () => {
         if (newBillItem.name && newBillItem.price && newBillItem.quantity > 0) {
-            setBillItems([...billItems, { ...newBillItem, id: Date.now() }]);
-            setSearchQuery("");
-            setNewBillItem({ name: "", price: "", quantity: 1 });
+            const itemToAdd = { ...newBillItem, id: Date.now() };
+
+            setBillItems([...billItems, itemToAdd]);
+
+            try {
+                const response = await fetch('http://localhost:3000/api/bill-items', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(itemToAdd),
+                });
+                if (!response.ok) {
+                    const errorData = await response.json(); // Log the server's error message
+                    throw new Error(`Failed to save the bill item: ${errorData.message || response.status}`);
+                }
+            } catch (error) {
+                console.error("Error adding item to bill:", error);
+            }
+            
         }
     };
 
@@ -51,8 +62,8 @@ const BillManagement = () => {
     };
 
     const handleItemSelect = (item) => {
-        setNewBillItem({ ...newBillItem, name: item.name, price: item.price });
-        setSearchQuery(item.name); // Set the selected item name into the search query
+        setNewBillItem({ name: item.name, price: item.price, quantity: 1 });
+        setSearchQuery(item.name); // Set the search query to the item name
     };
 
     const calculateSubtotal = () => {
@@ -69,9 +80,8 @@ const BillManagement = () => {
         return (subtotal + parseFloat(tax)).toFixed(2);
     };
 
-    // Format current date and time
-    const formattedDate = currentTime.toLocaleDateString(); // Format the date
-    const formattedTime = currentTime.toLocaleTimeString(); // Format the time
+    const formattedDate = currentTime.toLocaleDateString();
+    const formattedTime = currentTime.toLocaleTimeString();
 
     return (
         <div>
@@ -79,7 +89,6 @@ const BillManagement = () => {
             <div className="bill-management">
                 <h1>Bill Management</h1>
 
-                {/* Display the current time on the left and date on the right */}
                 <div className="time-date-container">
                     <p className="current-time"><strong>Time: {formattedTime}</strong></p>
                     <p className="current-date"><strong>Date: {formattedDate}</strong></p>
@@ -89,12 +98,12 @@ const BillManagement = () => {
                     <input
                         type="text"
                         placeholder="Search Item"
-                        value={searchQuery} // Bind the search query to the input field
-                        onChange={(e) => setSearchQuery(e.target.value)} // Update search query as the user types
+                        value={searchQuery}
+                        onChange={(e) => setSearchQuery(e.target.value)}
                     />
 
-                    {/* Display list of items based on search */}
-                    {searchQuery.trim() !== "" && filteredItems.length > 0 && (
+                    {/* Show list only when the user is typing a new query */}
+                    {searchQuery.trim() !== newBillItem.name && searchQuery.trim() !== "" && filteredItems.length > 0 && (
                         <ul className="item-list">
                             {filteredItems.map((item) => (
                                 <li key={item._id} onClick={() => handleItemSelect(item)}>
@@ -104,7 +113,7 @@ const BillManagement = () => {
                         </ul>
                     )}
 
-                    {searchQuery.trim() !== "" && filteredItems.length === 0 && (
+                    {searchQuery.trim() !== newBillItem.name && searchQuery.trim() !== "" && filteredItems.length === 0 && (
                         <p>No items found matching "{searchQuery}"</p>
                     )}
 
@@ -112,7 +121,7 @@ const BillManagement = () => {
                         type="number"
                         placeholder="Price"
                         value={newBillItem.price}
-                        readOnly
+                        readOnly={true}
                     />
                     <input
                         type="number"

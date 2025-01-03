@@ -54,7 +54,7 @@ const ItemManagement = () => {
             });
 
             if (response.ok) {
-                fetchItems(); // Refresh the list after deleting the item
+                fetchItems();
             } else {
                 alert("Error deleting item.");
             }
@@ -78,7 +78,7 @@ const ItemManagement = () => {
 
             if (response.ok) {
                 fetchItems();
-                setEditingItem(null); // Reset editing state
+                setEditingItem(null);
                 setNewItem({ name: "", price: "" });
             } else {
                 alert("Error updating item.");

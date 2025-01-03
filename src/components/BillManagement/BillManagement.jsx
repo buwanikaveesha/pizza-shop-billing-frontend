@@ -37,9 +37,9 @@ const BillManagement = () => {
     const handleAddToBill = async () => {
         if (newBillItem.name && newBillItem.price && newBillItem.quantity > 0) {
             const itemToAdd = { ...newBillItem, id: Date.now() };
-
+    
             setBillItems([...billItems, itemToAdd]);
-
+    
             try {
                 const response = await fetch('http://localhost:3000/api/bill-items', {
                     method: 'POST',
@@ -47,15 +47,19 @@ const BillManagement = () => {
                     body: JSON.stringify(itemToAdd),
                 });
                 if (!response.ok) {
-                    const errorData = await response.json(); // Log the server's error message
+                    const errorData = await response.json();
                     throw new Error(`Failed to save the bill item: ${errorData.message || response.status}`);
                 }
             } catch (error) {
                 console.error("Error adding item to bill:", error);
             }
-            
+    
+            // Clear the search field and reset the bill item form
+            setSearchQuery("");
+            setNewBillItem({ name: "", price: "", quantity: 1 });
         }
     };
+    
 
     const handleRemoveFromBill = (id) => {
         setBillItems(billItems.filter((item) => item.id !== id));
@@ -63,7 +67,7 @@ const BillManagement = () => {
 
     const handleItemSelect = (item) => {
         setNewBillItem({ name: item.name, price: item.price, quantity: 1 });
-        setSearchQuery(item.name); // Set the search query to the item name
+        setSearchQuery(item.name);
     };
 
     const calculateSubtotal = () => {

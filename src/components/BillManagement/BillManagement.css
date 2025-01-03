@@ -2,37 +2,42 @@
     max-width: 800px;
     margin: 20px auto;
     padding: 20px;
-    background: #fff;
+    background-color: #fff;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .bill-management h1 {
     text-align: center;
-    margin-bottom: 20px;
     font-size: 24px;
+    margin-bottom: 20px;
 }
 
 .bill-form {
+    position: relative;
     display: flex;
     gap: 10px;
     margin-bottom: 20px;
 }
 
-.bill-form input {
+.bill-form input,
+.bill-form select {
     flex: 1;
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 4px;
+    font-size: 14px;
 }
 
 .bill-form button {
     padding: 10px 20px;
     background-color: #007bff;
-    color: #fff;
+    color: white;
     border: none;
     border-radius: 4px;
     cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s ease;
 }
 
 .bill-form button:hover {
@@ -50,19 +55,23 @@
     border: 1px solid #ddd;
     padding: 10px;
     text-align: left;
+    font-size: 14px;
 }
 
 .bill-table th {
     background-color: #f4f4f4;
+    font-weight: bold;
 }
 
 .bill-table td button {
     padding: 5px 10px;
     background-color: #dc3545;
-    color: #fff;
+    color: white;
     border: none;
     border-radius: 4px;
     cursor: pointer;
+    font-size: 12px;
+    transition: background-color 0.3s ease;
 }
 
 .bill-table td button:hover {
@@ -77,4 +86,54 @@
 
 .bill-summary p {
     margin: 5px 0;
+}
+
+/* Updated styles for the item list dropdown */
+.item-list {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    max-height: 200px;
+    overflow-y: auto;
+    background-color: white;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    z-index: 10;
+    padding: 0;
+    margin: 0;
+}
+
+.item-list li {
+    padding: 10px;
+    cursor: pointer;
+    font-size: 14px;
+    color: #333;
+    transition: background-color 0.3s ease;
+}
+
+.item-list li:hover {
+    background-color: #f0f0f0;
+}
+
+.item-list li.selected {
+    background-color: #dcdcdc;
+}
+
+.time-date-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.current-time {
+    font-size: 1em;
+    font-weight: bold;
+}
+
+.current-date {
+    font-size: 1em;
+    font-weight: bold;
 }

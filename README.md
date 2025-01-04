@@ -17,3 +17,6 @@ This is a React-based invoice management system designed to generate and print i
 1. Clone the repository:
    ```bash
    https://github.com/buwanikaveesha/pizza-shop-billing-frontend
+- Navigate to the project directory: cd pizza-shop-billing-frontend
+- Install dependencies: npm install
+- Start the development server: npm start

@@ -90,3 +90,54 @@
 .item-management-item-button:hover {
   background-color: #c82333;
 }
+
+/* Responsive styles for screens 399px or narrower */
+@media (max-width: 399px) {
+  .item-management {
+    max-width: 100%;
+    margin: 10px;
+    padding: 15px;
+  }
+
+  .item-management-topic {
+    font-size: 24px;
+  }
+
+  .item-management-search-bar input {
+    padding: 8px;
+  }
+
+  .item-management-item-form {
+    flex-direction: column;
+    gap: 5px;
+  }
+
+  .item-management-item-form input {
+    width: 100%;
+  }
+
+  .item-management-item-form button {
+    width: 100%;
+    padding: 10px;
+  }
+
+  .item-management-item {
+    grid-template-columns: 1fr auto;
+    gap: 10px;
+    padding: 8px;
+  }
+
+  .item-management-item .item-name,
+  .item-management-item .item-price {
+    text-align: left;
+    font-size: 14px;
+  }
+
+  .item-management-item-buttons {
+    justify-content: space-between;
+  }
+
+  .item-management-item-button {
+    padding: 8px;
+  }
+}

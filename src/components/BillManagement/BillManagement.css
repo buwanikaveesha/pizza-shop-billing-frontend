@@ -151,3 +151,61 @@
 .generate-invoice-button:hover {
     background-color: #0056b3;
 }
+
+/* Responsive styles for screens 399px or narrower */
+@media (max-width: 399px) {
+    .bill-management {
+        max-width: 100%;
+        margin: 10px;
+        padding: 15px;
+    }
+
+    .bill-management h1 {
+        font-size: 20px;
+    }
+
+    .bill-form {
+        flex-direction: column;
+        gap: 8px;
+    }
+
+    .bill-form input,
+    .bill-form select,
+    .bill-form button {
+        width: 100%;
+    }
+
+    .bill-table th,
+    .bill-table td {
+        font-size: 12px;
+        padding: 8px;
+    }
+
+    .bill-table td button {
+        font-size: 10px;
+        padding: 5px;
+    }
+
+    .bill-summary {
+        font-size: 16px;
+    }
+
+    .item-list {
+        max-height: 150px;
+    }
+
+    .item-list li {
+        font-size: 12px;
+        padding: 8px;
+    }
+
+    .time-date-container {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+
+    .generate-invoice-button {
+        width: 100%;
+    }
+}
